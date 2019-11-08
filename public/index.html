@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Vue REST</title>
+  
+  <link rel="stylesheet" type="text/css" href ="stylesheets/style.css">
+  
+  <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+</head>
+
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">What Animal Are You?</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" 
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            </div>
+          </div>
+        </nav>
+        <br>
+        <br>
+  
+  <div id="app">
+      <!--<button v-on:click="fetchDef">Click me</button>-->
+      
+    <div v-if="showSongs">
+      <!-- FIRST SONG -->
+      <center>
+        <h1>
+          Please Select the Song You Most Identify With
+        </h1>
+        <br>
+      </center>
+      <div>
+        <div class="card border-secondary mb-3" >
+          <div class="container">
+            <br />
+            <div class="row" >
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 0" :id="'leftCheck' + 0" value="0" checked v-model="selection0">
+                  <label class="form-check-label" :for="'radioGroup' + 0">
+                    {{songs[0].title1}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[0].url1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 0" :id="'rightCheck' + 0" value="1" v-model="selection0">
+                  <label class="form-check-label" :for="'radioGroup' + 0">
+                    {{songs[0].title2}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[0].url2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+        <br />
+      </div>
+      
+    <!-- Second SONG -->
+      <div>
+        <div class="card border-secondary mb-3">
+          <div class="container">
+            <br />
+            <div class="row" >
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 1" :id="'leftCheck' + 1" value="0" checked v-model="selection1">
+                  <label class="form-check-label" :for="'radioGroup' + 1">
+                    {{songs[1].title1}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[1].url1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 1" :id="'rightCheck' + 1" value="1" v-model="selection1">
+                  <label class="form-check-label" :for="'radioGroup' + 1">
+                    {{songs[1].title2}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[1].url2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+        <br />
+      </div>
+      
+    <!-- Third SONG -->
+      <div>
+        <div class="card border-secondary mb-3">
+          <div class="container">
+            <br />
+            <div class="row" >
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 2" :id="'leftCheck' + 2" value="0" checked v-model="selection2">
+                  <label class="form-check-label" :for="'radioGroup' + 2">
+                    {{songs[2].title1}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[2].url1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 2" :id="'rightCheck' + 2" value="1" v-model="selection2">
+                  <label class="form-check-label" :for="'radioGroup' + 2">
+                    {{songs[2].title2}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[2].url2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+        <br />
+      </div>
+      
+      
+    <!-- Fourth SONG -->
+      <div>
+        <div class="card border-secondary mb-3">
+          <div class="container">
+            <br />
+            <div class="row" >
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 3" :id="'leftCheck' + 3" value="0" checked v-model="selection3">
+                  <label class="form-check-label" :for="'radioGroup' + 3">
+                    {{songs[3].title1}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[3].url1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 3" :id="'rightCheck' + 3" value="1" v-model="selection3">
+                  <label class="form-check-label" :for="'radioGroup' + 3">
+                    {{songs[3].title2}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[3].url2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+        <br />
+      </div>
+      
+    <!-- Fifth SONG -->
+      <div>
+        <div class="card border-secondary mb-3">
+          <div class="container">
+            <br />
+            <div class="row" >
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 4" id="leftCheck4" value="0" checked v-model="selection4">
+                  <label class="form-check-label" :for="'radioGroup' + 4">
+                    {{songs[4].title1}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[4].url1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" :name="'radioGroup' + 4" id="rightCheck4" value="1" v-model="selection4">
+                  <label class="form-check-label" :for="'radioGroup' + 4">
+                    {{songs[4].title2}}
+                  </label>
+                </div>
+                <br />
+                <iframe width="350" height="200" :src="'https://www.youtube.com/embed/' + songs[4].url2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+        <br />
+      </div>
+      
+      <center>
+        <button type="button" class="btn btn-dark" v-on:click="fetchAnimal">Find Out What Animal You Are</button>
+      </center>
+      </div> 
+
+    
+    <div v-if= "showSongs !=true">
+      <center>
+        <h1>
+          {{animal.name}}
+        </h1>
+        <p>
+          {{animal.description}}
+        </p>
+      </center>
+      <br>
+      
+      
+      <center>
+        <button type="button" class="btn btn-dark" v-on:click="takeAgain">Take Quiz Again</button>
+      </center>
+    </div>
+    
+
+  </div>
+    
+  
+  <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a href="https://github.com/BYUCS260/lab-4-node-jtrockel"> Josh Trockel</a>
+      </div>
+    <!-- Copyright -->
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="javascripts/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  
+</body>
+
+</html>
